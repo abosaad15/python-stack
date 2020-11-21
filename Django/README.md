@@ -1,4 +1,4 @@
-# skilles gainted
+# Skilles gained
 Below are some skilles i gainted while working on these projects:
 
   - Understand the benefits of an MVC/MTV framework
