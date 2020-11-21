@@ -1,0 +1,49 @@
+
+Dojos:
+
+  Create:
+      1) dojo_1 = Dojo.objects.create(name = 'LA', city = 'LA', state = 'CA')
+      2) dojo_2 = Dojo.objects.create(name = 'AZ', city = 'Tempe', state = 'AZ')
+      3) dojo_3 = Dojo.objects.create(name = 'TX', city = 'Auston', state = 'TX')
+
+  Delete:
+      1) dojos = Dojo.objects.all()
+      2) dojos.delete()
+
+  Create:
+      1) dojo_1 = Dojo.objects.create(name = 'LA', city = 'LA', state = 'CA')
+      2) dojo_2 = Dojo.objects.create(name = 'AZ', city = 'Tempe', state = 'AZ')
+      3) dojo_3 = Dojo.objects.create(name = 'TX', city = 'Auston', state = 'TX')
+
+
+Ninjas:
+
+  Create:
+    dojo_1:
+      1) ninja_2 = Ninja.objects.create(first_name = 'Hind', last_name = 'Alamri', dojo_id = dojo_1)
+      2) ninja_1 = Ninja.objects.create(first_name = 'Turki', last_name = 'Alshehri', dojo_id = dojo_1)
+      3) ninja_3 = Ninja.objects.create(first_name = 'Phil', last_name = 'Krull', dojo_id = dojo_1)
+
+    dojo_2:
+      1) ninja_4 = Ninja.objects.create(first_name = 'Ahmed last_name = 'Ali', dojo_id = dojo_2)
+      2) ninja_5 = Ninja.objects.create(first_name = 'Omar last_name = 'seteve', dojo_id = dojo_2)
+      3) ninja_6 = Ninja.objects.create(first_name = 'Sam', last_name = 'Jone', dojo_id = dojo_2)
+
+    dojo_3:
+      1) ninja_7 = Ninja.objects.create(first_name = 'Khaled last_name = 'Omar', dojo_id = dojo_3)
+      2) ninja_8 = Ninja.objects.create(first_name = 'Abdullah', last_name = 'Faris', dojo_id = dojo_3)
+      3) ninja_9 = Ninja.objects.create(first_name = 'Abdullah', last_name = 'Fahad', dojo_id = dojo_3)
+
+
+Retrieve:
+      - ninjas_for_one = Ninja.objects.filter(dojo_id = dojo_1)
+      - ninjas_for_one.all()
+
+      - ninjas_for_one = Ninja.objects.filter(dojo_id = dojo_2)
+      - ninjas_for_one.all()
+
+      -  ninja_9.dojo_id
+
+
+Create a new dojo:
+  - dojo_4 = Dojo.objects.create(name = 'PA', city = 'capital', state = 'PA')

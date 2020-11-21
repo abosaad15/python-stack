@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light border sticky-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h2 style="">{ Hello {{user.first_name}} }</h2>
+        </div>
+        <button class="navbar-toggler" data-toggle="collapse" data-target = "#navbarResponsive" type="button" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id= "navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="/logout" class="nav-link"><button class="btn btn-danger">Logout</button></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container  p-5">
+      <div class="row">
+        <div class="col-sm-12  p-4">
+          {% if messages %}
+            <div class="alert alert-danger" role="alert">
+              <strong>Opps !</strong>
+              <ul class="messages">
+                {% for message in messages %}
+                  <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+        <div class="col-sm-12 col-md-5 mx-auto p-5 border">
+            <h2>Add a Favorite book</h2>
+            <hr>
+            <form action="/add_book" method="POST">
+                {% csrf_token %}
+                <div class="form-group row">
+                <label class="col-sm-3 col-form-label" >Title </label>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" name="title" placeholder="Title">
+                </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label" >Description:</label>
+                    <div class="col-sm-10">
+                    <textarea class="form-control" rows="5" name="desc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                <div class="col-sm-6 offset-sm-0">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-12 col-md-5 mx-auto p-5 border" style="height:600px">
+          <h2>All Books</h2>
+          <hr>
+          <div class="table-responsive " style="height:450px">
+            {% for book in books %}
+                <a href="/book_info/{{book.id}}">{{book.title}}</a>
+                <p>(add by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}) <br>
+                {% if book in user.liked_books.all %}
+                  <i>this is one of your favorites</i>
+                {% else %}
+                  <a href="/add_to_fav_list/{{book.id}}">Add to your Favorites</a>
+                {% endif %}
+              </p>
+            {% endfor %}
+
+            <!-- others -->
+
+            <!-- {% for book in books %}
+              {% if book not in favBooks %}
+                <br>
+                <a href="" >{{book.title}}</a>
+                <p>(add by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
+                <a href="/add_to_fav_list/{{book.id}}">Add to Favorite</a>
+                <br>
+              {% endif %}
+            {% endfor %} -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

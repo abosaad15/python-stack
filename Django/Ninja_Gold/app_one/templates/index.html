@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="container p-4 border text-center" style="width: 1000px;" >
+        <!-- Top  Row  -->
+        <div class="jumbotron">
+            <h2>Ninja Gold Game</h2>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <h5 style="color: rgb(228, 195, 7);">Your Gold: {{request.session.gold_count}}</h5>
+        </div>
+        
+        <!-- Middle  Row  -->
+        <div class="row text-center " style="margin-top: 30px; justify-content: space-between; display: flex;">
+            <div class="col-sm-2 mx-auto card border p-4 " style="border-radius: 10px; background-color: #e9ecef;">
+                <h4>Farm</h4>
+                <p>(earn 10-20 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="catagory" value="Farm">
+                    <input type="submit" class="btn btn-info" value="Find Gold!"> 
+                    
+                </form>
+
+            </div>
+            <div class="col-sm-2 mx-auto card border p-4" style="border-radius: 10px; background-color: #e9ecef;">
+                <h4>Cave</h4>
+                <p>(earn 5-10 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="catagory" value="Cave">
+                    <input type="submit" class="btn btn-info" value="Find Gold!">  
+                </form>
+                
+            </div>
+            <div class="col-sm-2 card mx-auto border p-4" style="border-radius: 10px; background-color: #e9ecef;">
+                <h4>House</h4>
+                <p>(earn 2- 5 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="catagory" value="House">
+                    <input type="submit" class="btn btn-info" value="Find Gold!">  
+                </form>
+
+            </div>
+            <div class="col-sm-2 mx-auto card border p-4" style="border-radius: 10px; background-color: #e9ecef;">
+                <h4>Casino</h4>
+                <p>(earn/takes 0-50 golds)</p>
+                <form action="/process_money" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="catagory" value="Casino">
+                    <input type="submit" class="btn btn-info" value="Find Gold!">  
+                </form>
+
+            </div>
+        </div>
+
+        <!-- End Row  -->
+        <div class="row " style="margin-top: 30px">
+            <h5>Activites</h5>
+            {% if request.session.color == 1 %}
+                <textarea class="form-control" rows="5" id="activites" style="color: rgb(78, 143, 78); border-radius: 10px; margin: 0px 20px 0px 20px;">{{request.session.activites}}</textarea>
+            {% else %}  
+                <textarea class="form-control" rows="5" id="activites" style="color: rgb(163, 38, 38)">{{request.session.activites}}</textarea>
+            {% endif %}
+
+        </div>
+        <form action="{% url 'reset' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Reset" style="margin-top: 10px;">
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+<!-- 
+<div class="container p-3 border" >
+    <div class="jumbotron text-center">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess</p>
+    </div>
+    <div class="row ">
+        <div class="col-sm-4 mx-auto text-center">
+        <form action="/process" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="guess" name="user_guess">
+        </div>
+            <input type="submit" class="btn btn-info" value="Submit">    
+        </form>    
+    </div>
+    </div>
+</div> -->

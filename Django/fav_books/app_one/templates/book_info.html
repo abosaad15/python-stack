@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>Book Info</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light border sticky-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h2 style="">{ Hello {{user.first_name}} }</h2>
+        </div>
+        <button class="navbar-toggler" data-toggle="collapse" data-target = "#navbarResponsive" type="button" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id= "navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="/books" class="nav-link"><button class="btn btn-outline-dark">Go Back</button></a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/logout" class="nav-link"><button class="btn btn-danger">Logout</button></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container p-5">
+      <div class="row">
+        <div class="col-sm-12  p-4">
+          {% if messages %}
+            <div class="alert alert-danger" role="alert">
+              <strong>Opps !</strong>
+              <ul class="messages">
+                {% for message in messages %}
+                  <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+        <div class="col-sm-12 col-md-5 mx-auto p-5 border">
+          <h3 >{{book.title}}</h3>
+          <hr>
+          <p class=""> Added by: <br><span style="color: #4997d0">{{book.uploaded_by.first_name}}</span></p>
+          <p class=""> Added on: <br><span style="color: #4997d0">{{book.created_at}}</span></p>
+          <p class=""> Last updated on: <br><span style="color: #4997d0">{{book.updated_at}}</span></p>
+          {% if book.uploaded_by.id == request.session.userid %}
+            <form action="/update/{{book.id}}" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <p class="lead"> Description: </p>
+                <!-- <input type="hidden" value="{{book.title}}" name = 'title'> -->
+                <!-- <input type="hidden" value="{{book.desc}}" name = 'desc'> -->
+                <textarea name="desc" rows="5" class="form-control">{{book.desc}}</textarea>
+              </div>
+              <input type="submit" class="btn btn-outline-dark" value="Update">
+              <a href="/delete/{{book.id}}" class="btn btn-danger">Delete</a>
+            </form>
+            {% else %}
+              <p class="lead"> Description: <br><span style="color: #4997d0">{{book.desc}}</span></p>
+          {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-5 mx-auto p-5 border">
+          <h3>Users Who Like This Book</h3>
+          <hr>
+          <ul>
+          {% for i in book.users_who_like.all %}
+              {% if i.id == request.session.userid %}
+                  <li>{{i.first_name}} <a href="/unfavorite/{{book.id}}">Un-Favorite</a></li>
+              {% else %}
+                  <li>{{i.first_name}}</li>
+              {% endif %}
+          {% endfor %}
+          </ul>
+          {% if book not in user.liked_books.all %}
+            <a href="/add_to_fav_list/{{book.id}}">Add to Favorite</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

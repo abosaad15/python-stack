@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <title>Plans</title>
+  </head>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h4 class="display-4" style="color:white" >Hello {{user.first_name}}!</h4>
+      </div>
+      <div class="row">
+
+        <div class="col-sm-auto mx-auto">
+          <a href="trips/new"><button class="btn">Create a new trip!</button></a>
+        </div>
+
+        <div class="col-sm-auto mx-auto">
+            <a href="logout"><button class="btn btn-danger">Log out!</button></a>
+        </div>
+      </div>
+
+
+    </div>
+  </nav>
+
+    <div class="container-fluid  p-5">
+
+      <div class="row">
+      </div>
+      <div class="row ">
+        <div class="col-sm-11 mx-auto  pb-4">
+          <h4>Your trips:</h4>
+          <div class="table-responsive" >
+            <table class="table border table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th>Destination</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Plan</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for trip in trips %}
+                  <tr>
+                    <td> <a href="/trips/{{trip.id}}"> {{trip.dest}}</a></td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td>{{trip.plan}}</td>
+                    <th><a href="remove_trip/{{trip.id}}">Remove</a> | <a href="edit_trip/{{trip.id}}">Edit</a></th>
+                  </tr>
+                {% endfor %}
+
+                {% for trip in joined_trips %}
+                  <tr>
+                    <td> <a href="/trips/{{trip.id}}"> {{trip.dest}}</a></td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td>{{trip.plan}}</td>
+                    <th><a href="remove_joined_trip/{{trip.id}}">Cancel</a></th>
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-sm-11 mx-auto  pb-4">
+          <h4>Other people's trips:</h4>
+          <div class="table-responsive" style="max-height:500px">
+            <table class="table table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th>Destination</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Plan</th>
+                  <th>Want to join ?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for u in all_users %}
+                  {% if u.id != user.id %}
+                    {% for trip in u.trips.all %}
+                      {% if trip not in joined_trips.all%}
+                        <tr>
+                          <td> <a href="/trips/{{trip.id}}"> {{trip.dest}}</a></td>
+                          <td>{{trip.start_date}}</td>
+                          <td>{{trip.end_date}}</td>
+                          <td>{{trip.plan}}</td>
+                          <th><a href="/join_trip/{{trip.id}}">Join</a></th>
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+  </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <title>Users and Templates</title>
+  </head>
+  <body>
+
+    <div class="container border p-5">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- <nav class="navbar navbar-dark bg-dark">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </nav> -->
+            <!-- <i class="fa fa-sign-out" aria-hidden="true" style="color:white"></i> -->
+            <nav class="navbar navbar-dark bg-dark">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Company Database</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a style="color:white" href="#"><span class="fa fa-sign-out"></span> Log out</a></li>
+                </ul>
+              </div>
+            </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 mx-auto  p-4">
+          <h3 style="margin-bottom:40px">Add new user</h3>
+          <form action="/add_user" method="post">
+             {% csrf_token %}
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="text" class="form-control" placeholder="Enter first name" name="first_name">
+            </div>
+
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" class="form-control" placeholder="Enter last name" name="last_name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" placeholder="Enter email" name="email">
+            </div>
+
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="text" class="form-control" placeholder="Enter age" name="age">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
+
+        <div class="col-sm-8 mx-auto  p-4">
+          <h3 style="margin-bottom:40px">All the users</h3>
+          <div class="table-responsive border" style="height:350px">
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" style="position: sticky; top: 0">id</th>
+                  <th scope="col" style="position: sticky; top: 0">first_name</th>
+                  <th scope="col" style="position: sticky; top: 0">last_name</th>
+                  <th scope="col" style="position: sticky; top: 0">email</th>
+                  <th scope="col" style="position: sticky; top: 0">age</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- {% for user in users %}
+                  <tr>
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.age}}</td>
+                  </tr>
+                {% endfor %} -->
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
