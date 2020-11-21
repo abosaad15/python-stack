@@ -1,2 +1,2 @@
 # secret key is placed inside this file
-.secret_settings.py
+secrets_settings.py
