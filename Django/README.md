@@ -22,4 +22,5 @@ Below are some objectives and skills i gainted while working on these projects:
   - Understand what a salt is.
   - Bcrypt hashing algorithm.
   - Building django fullstack projects.
+  - Deploying django project to AWS EC2.
   
