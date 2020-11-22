@@ -1,5 +1,5 @@
-# Skills gained
-Below are some skilles i gainted while working on these projects:
+# Objectives
+Below are some objectives and skills i gainted while working on these projects:
 
   - Understand the benefits of an MVC/MTV framework.
   - Understand how routes are divided between project and app level urls.py files.
@@ -11,3 +11,15 @@ Below are some skilles i gainted while working on these projects:
   - Learn how Django handles session.
   - Django ORM.
   - Build a Django model.
+  - Learn how to create a database and table(s) in SQLite based on our model(s).
+  - ORM CRUD commands.
+  - Understand how to establish one-to-many & many-to-many relationships between models.
+  - Learn how to read an instance with its associated relationship data.
+  - Learn how to add our own validation logic into the models.
+  - Understand what hashing is.
+  - Understand what encryption is.
+  - Learn techniques for protecting users' passwords.
+  - Understand what a salt is.
+  - Bcrypt hashing algorithm.
+  - Building django fullstack projects.
+  
