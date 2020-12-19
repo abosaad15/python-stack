@@ -1,2 +1,2 @@
 
-![](books_authors/wireframe.png)
+![](wireframe.png)
