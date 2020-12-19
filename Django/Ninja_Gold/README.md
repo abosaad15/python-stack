@@ -1,2 +1,2 @@
 
-![](Ninja_Gold/wireframe.png)
+![](wireframe.png)
