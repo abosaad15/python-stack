@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* color: white; */
+    font-size: 2rem ;
+    outline: none;
+}
+
+p,h1,h2,h3, td, th, li, a {
+    color: white;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+}
+header {
+    display: flex;
+    align-items: center;
+    background-color: rgb(4, 32, 24);
+    min-height: 10vh;
+}
+
+nav {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+
+nav h1 {
+    color: rgb(226, 219, 219);
+    font-size: 3rem;
+    flex-grow: 1;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+
+
+/* Main Section */
+
+.main {
+    background-color: #dfdbbc;
+    min-height: 90vh;
+    padding: 3rem;
+}
+
+.container {
+    background-color: #19181D;
+    width: 70%;
+    margin: auto;
+    padding: 3.3rem;
+    border-radius: 1rem;
+    /* min-height: 80%; */
+}
+
+.inner-container {
+    border: 1px solid white;
+}
+
+table {
+    width: 100%;
+    padding: 2rem;
+}
+
+tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.th {
+    width: 20rem;
+    flex-grow: 1;
+    /* border: 1px solid white; */
+}
+
+td {
+    width: 30rem;
+    flex-grow: 4;
+}
+
+
+.authors {
+    padding: 1rem 0rem 1rem 2rem;
+}
+
+.list {
+    padding: 0rem 0rem 0rem 7rem;
+}
+
+.select {
+    padding: 2rem;
+}
+
+select {
+    width: 30%;
+    padding: 1rem;
+    outline: none;
+}
+
+button {
+    width: 10%;
+    background-color: steelblue;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.6rem;
+}
+
+
+
+
+@media only screen and (max-width: 1290px ) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 825px ) {
+    html {
+        font-size: 0.4rem ;
+    }
+
+    .container {
+        width: 90%;
+    }
+}

@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+}
+header {
+    display: flex;
+    align-items: center;
+    background-color: rgb(4, 32, 24);
+    min-height: 10vh;
+}
+
+nav {
+    width: 90%;
+    margin: auto;
+}
+
+nav h1 {
+    color: white;
+    font-size: 3rem;
+}
+
+
+
+/* Main Section */
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #19181D;
+    background-repeat:no-repeat ;
+    background-position: center;
+    background-size: cover;
+    height: 90vh;
+}
+
+.main h1 {
+    font-size: 4rem ;
+}
+
+.main p {
+    margin-top: 2rem;
+    font-size: 3rem ;
+}
+
+.main button {
+    background-color: rgb(8, 66, 100);
+    font-size: 3rem;
+    padding: 1rem 4rem;
+    border: none;
+    margin-top: 3rem;
+    border-radius: 1.6rem;
+}
