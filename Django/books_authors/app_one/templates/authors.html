@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/authors.css' %}">
+    <title>Authors</title>
+</head>
+
+<body>
+    <!-- Header and Navbar -->
+    <header>
+        <nav>
+            <h1 id="logo">
+                Django
+            </h1>
+            <h3><a href="books">Go to Books</a></h3>
+        </nav>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <div class="form-container">
+                <form action="/add_author" method="POST">
+                    {% csrf_token %}
+                    <h3>Add an Author</h3>
+                    <label>First Name</label>
+                    <input type="text" name="first_name">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name">
+                    <label>Notes</label>
+                    <input type="text" name="notes">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% for author in authors %}
+                    <tr>
+                        <th>{{author.id}}</th>
+                        <th>{{author.first_name}} {{author.last_name}}</th>
+                        <th><a href="/authors/{{author.id}}">View</a> </th>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/book_info.css' %}">
+    <title>Author Info</title>
+</head>
+
+<body>
+    <!-- Header and Navbar -->
+    <header>
+        <nav>
+            <h1 id="logo">
+                Django
+            </h1>
+            <h3><a href="/authors">Go Back</a></h3>
+        </nav>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            <div class="inner-container">
+                <table>
+                    <tr>
+                        <td class="th">Name :</td>
+                        <td>{{author.first_name}} {{author.last_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="th">ID :</td>
+                        <td>{{author.id}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="th">Notes :</td>
+                        <td>{{author.notes}}</td>
+                    </tr>
+                </table>
+
+                <div class="authors">
+                    <h1>Books</h1>
+                </div>
+                <div class="list">
+                    <ul>
+                        {% for book in author.books.all %}
+                        <li>{{book.title}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <form action="/link_book/{{author.id}}" method="POST">
+                    {% csrf_token %}
+                    <div class="select">
+                        <select name="author_id">
+                            {% for book in books %}
+                            <option value="{{book.id}}">{{book.title}}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+
+</html>
